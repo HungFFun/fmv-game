@@ -1,0 +1,15 @@
+# Backend
+backend/data/          # SQLite runtime DB (sinh bởi cmd/seed)
+# Lưu ý: media/*.mp4 CÓ commit (demo ít clip → để trong source cho deploy turnkey)
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Secrets / env (KHÔNG commit)
+.env
+.env.local
+
+# Misc
+.DS_Store
+*.log

@@ -1,0 +1,65 @@
+---
+description: FMV Dating-Sim — kiến trúc & quy tắc bắt buộc
+alwaysApply: true
+---
+
+# FMV Dating-Sim (Go backend + React frontend)
+
+Game FMV branching narrative kiểu "Five Hearts Under One Roof". Hai source:
+`backend/` (Go, Director API) và `frontend/` (React + Vite + TS).
+
+## Quy tắc KHÔNG ĐƯỢC VI PHẠM
+
+1. **Server-authoritative tuyệt đối.** Mọi logic phân nhánh, evaluate condition,
+   apply effects, check entitlement chạy trong `backend/internal/director`.
+   Client KHÔNG bao giờ tự quyết scene tiếp theo, không tự tính affinity,
+   không nhận URL video chưa ký. Nếu thêm tính năng mới mà client cần "biết
+   trước" điều gì — câu trả lời là thêm field vào SceneResponse, không phải
+   chuyển logic sang client.
+2. **Engine thuần.** `backend/internal/engine` không được import I/O (db, http,
+   os). Mọi thay đổi engine PHẢI kèm table-driven test trong `engine_test.go`.
+3. **Choices đã lọc.** `buildSceneResponse` chỉ trả choice thoả condition.
+   Đừng bao giờ trả full list kèm cờ `disabled` — đó là lộ spoiler.
+4. **Entitlement check tại ranh giới chương** (trong `Advance`, khi
+   `next.ChapterID != scene.ChapterID`) và khi start game. Trả 402
+   `CHAPTER_LOCKED` kèm data chương để FE mở StoreScreen.
+5. **Signed media URL**: mọi URL video đi qua `internal/media.SignURL`;
+   handler `/media/{file}` phải `media.Verify` trước khi serve.
+6. **Content là DATA, không phải code**: kịch bản nằm ở
+   `backend/content/*.json`, nạp bằng `cmd/seed` (validate DSL + dead-end +
+   ref). Không hardcode scene/choice trong Go.
+
+## Mini-DSL (cột condition / effects / on_enter)
+
+```json
+{"affinity": {"malsook": {">=": 30}}, "flags": {"saw_secret": true}}
+{"affinity": {"minjung": 5}, "set_affinity": {"x": 0}, "flags": {"f": true}}
+```
+- Condition: AND tất cả các vế; shorthand số = `>=`; affinity chưa set = 0,
+  flag chưa set = false. Toán tử: `>= > <= < == !=`.
+- Effects: `affinity` là DELTA clamp 0..100; `set_affinity` gán tuyệt đối,
+  chạy SAU delta.
+
+## Lệnh hay dùng
+
+```bash
+cd backend && go test ./...                 # PHẢI pass trước khi commit
+cd backend && go run ./cmd/seed && go run ./cmd/server   # :8080
+cd frontend && npm run dev                  # :5173, proxy → :8080
+rm backend/data/game.db                     # reset DB sau khi sửa content JSON
+```
+
+## Khi sửa kịch bản (demo-story.json)
+
+- Scene `linear` bắt buộc có `next`; `choice` bắt buộc ≥1 choice; `ending`
+  phải có record trong mảng `endings`.
+- Mọi `next` tham chiếu scene `code`; seed sẽ fail nếu ref sai hoặc dead-end.
+- Sau khi sửa: xoá `backend/data/game.db` rồi seed lại (seed idempotent theo slug).
+
+## Dev stubs cần thay khi lên production
+
+- Auth: cookie `uid` (api/server.go `currentUser`) → JWT/session.
+- Purchase: `POST /api/store/purchase` → webhook Stripe/IAP verify receipt.
+- SQLite → Postgres: dùng `backend/db/postgres-schema.sql`, đổi placeholder
+  `?` → `$n` trong `internal/store`.
+- mp4 tĩnh → HLS/DRM: đổi `internal/media`, cột `hls_manifest` đã sẵn.

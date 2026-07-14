@@ -1,0 +1,384 @@
+{
+  "model": {
+    "code": "hana",
+    "display_name": "Hana",
+    "avatar": "/media/hana_avatar.jpg",
+    "age": 24,
+    "birthday": "April 21st",
+    "relationship": "Single",
+    "occupation": "Manager of Company",
+    "height_cm": 175,
+    "weight_kg": 53,
+    "family": "Mom, Dad, Na-na"
+  },
+  "story": {
+    "slug": "five-hearts-demo",
+    "title": "Năm Trái Tim Dưới Một Mái Nhà — Demo"
+  },
+  "characters": [
+    { "code": "hana", "display_name": "Hana", "archetype": "bar_encounter" },
+    { "code": "malsook", "display_name": "Mal-sook", "archetype": "childhood_friend" },
+    { "code": "minjung", "display_name": "Min-jung", "archetype": "idol" }
+  ],
+  "media": [
+    { "key": "v_intro", "kind": "video", "file": "/media/shot_1.mp4", "duration_ms": 10000 },
+    { "key": "v_bar", "kind": "video", "file": "/media/shot_2.mp4", "duration_ms": 8000 },
+    { "key": "v_counter", "kind": "video", "file": "/media/shot_3.mp4", "duration_ms": 14000 },
+    { "key": "v_quiet", "kind": "video", "file": "/media/shot_4.mp4", "duration_ms": 15000 },
+    { "key": "v_name", "kind": "video", "file": "/media/shot_5.mp4", "duration_ms": 15000 },
+    { "key": "v_number", "kind": "video", "file": "/media/shot_6.mp4", "duration_ms": 24000 },
+    { "key": "v_smile", "kind": "video", "file": "/media/shot_7.mp4", "duration_ms": 15000 },
+    { "key": "v_morning", "kind": "video", "file": "/media/ch2_morning.mp4", "duration_ms": 6000 },
+    { "key": "v_confess_choice", "kind": "video", "file": "/media/ch2_confess_choice.mp4", "duration_ms": 5000 },
+    { "key": "v_malsook_route", "kind": "video", "file": "/media/ch2_malsook_route.mp4", "duration_ms": 6000 },
+    { "key": "v_minjung_route", "kind": "video", "file": "/media/ch2_minjung_route.mp4", "duration_ms": 6000 },
+    { "key": "v_normal_route", "kind": "video", "file": "/media/ch2_normal_route.mp4", "duration_ms": 5000 },
+    { "key": "v_busted", "kind": "video", "file": "/media/ch2_busted.mp4", "duration_ms": 5000 },
+    { "key": "v_end_malsook", "kind": "video", "file": "/media/end_malsook_good.mp4", "duration_ms": 6000 },
+    { "key": "v_end_minjung", "kind": "video", "file": "/media/end_minjung_good.mp4", "duration_ms": 6000 },
+    { "key": "v_end_normal", "kind": "video", "file": "/media/end_normal.mp4", "duration_ms": 5000 },
+    { "key": "v_end_bad", "kind": "video", "file": "/media/end_bad.mp4", "duration_ms": 5000 },
+    { "key": "cg_kitchen", "kind": "video", "file": "/media/cg_kitchen.mp4", "duration_ms": 4000 },
+    { "key": "cg_stage", "kind": "video", "file": "/media/cg_stage.mp4", "duration_ms": 4000 },
+    { "key": "cg_malsook", "kind": "video", "file": "/media/cg_malsook.mp4", "duration_ms": 4000 },
+    { "key": "cg_minjung", "kind": "video", "file": "/media/cg_minjung.mp4", "duration_ms": 4000 },
+    { "key": "v_ch3_intro", "kind": "video", "file": "/media/ch3_intro.mp4", "duration_ms": 6000 },
+    { "key": "v_ch3_end", "kind": "video", "file": "/media/ch3_end.mp4", "duration_ms": 5000 },
+    { "key": "v_ch4_intro", "kind": "video", "file": "/media/ch4_intro.mp4", "duration_ms": 6000 },
+    { "key": "v_ch4_end", "kind": "video", "file": "/media/ch4_end.mp4", "duration_ms": 5000 }
+  ],
+  "chapters": [
+    {
+      "idx": 1,
+      "title": "Chapter 1 — Under One Roof",
+      "is_free": true,
+      "price_cents": 0,
+      "entry": "ch1_intro",
+      "poster": "/media/thumb_ch1.jpg",
+      "videos": [
+        { "code": "v_intro", "idx": 0, "title": "A Long Day in Itaewon", "media": "v_intro", "poster": "/media/thumb_itaewon.jpg" },
+        { "code": "v_bar", "idx": 1, "title": "Moonlit Bar", "media": "v_bar", "poster": "/media/thumb_moonlit.jpg" },
+        { "code": "v_counter", "idx": 2, "title": "The Woman Beside Him", "media": "v_counter", "poster": "/media/thumb_woman.jpg" },
+        { "code": "v_quiet", "idx": 3, "title": "A Quiet Seat", "media": "v_quiet", "poster": "/media/thumb_quiet.jpg" },
+        { "code": "v_name", "idx": 4, "title": "Tell Me Your Name First", "media": "v_name", "poster": "/media/thumb_name.jpg" },
+        { "code": "v_number", "idx": 5, "title": "Can I Ask Your Number?", "media": "v_number", "poster": "/media/thumb_number.jpg" },
+        { "code": "v_smile", "idx": 6, "title": "Don't Go Home Yet", "media": "v_smile", "poster": "/media/thumb_moonlit.jpg" }
+      ],
+      "map": {
+        "width": 2000,
+        "height": 760,
+        "nodes": [
+          { "id": "start", "kind": "start", "x": 35, "y": 305, "w": 150, "h": 150 },
+          { "id": "intro", "kind": "video", "title": "A Long Day in Itaewon", "poster": "/media/thumb_itaewon.jpg", "x": 277, "y": 314, "w": 240, "h": 135, "hotspot": true , "scene": "ch1_intro" },
+          { "id": "bar", "kind": "video", "title": "Moonlit Bar", "poster": "/media/thumb_moonlit.jpg", "x": 679, "y": 309, "w": 240, "h": 135 , "scene": "ch1_bar" },
+          { "id": "counter", "kind": "video", "title": "The Woman Beside Him", "poster": "/media/thumb_woman.jpg", "x": 679, "y": 34, "w": 240, "h": 135 , "scene": "ch1_counter" },
+          { "id": "quiet", "kind": "video", "title": "A Quiet Seat", "poster": "/media/thumb_quiet.jpg", "x": 676, "y": 556, "w": 240, "h": 135 , "scene": "ch1_quiet" },
+          { "id": "name", "kind": "video", "title": "Tell Me Your Name First", "poster": "/media/thumb_name.jpg", "x": 1078, "y": 313, "w": 240, "h": 135 , "scene": "ch1_name" },
+          { "id": "number", "kind": "video", "title": "Can I Ask Your Number?", "poster": "/media/thumb_number.jpg", "x": 1479, "y": 310, "w": 240, "h": 135 , "scene": "ch1_number" },
+          { "id": "ending", "kind": "finish", "x": 1807, "y": 303, "w": 150, "h": 150 , "scene": "ch1_ending" }
+        ],
+        "edges": [
+          { "from": "start", "to": "intro" },
+          { "from": "intro", "to": "bar", "label": "Bước vào Moonlit Bar" },
+          { "from": "bar", "to": "counter", "label": "Ngồi xuống quầy bar", "cond": "+hana 5" },
+          { "from": "bar", "to": "quiet", "label": "Chú ý cô gái góc quầy", "cond": "+hana 10" },
+          { "from": "counter", "to": "name" },
+          { "from": "quiet", "to": "name" },
+          { "from": "name", "to": "number", "label": "3 lựa chọn hỏi tên" },
+          { "from": "number", "to": "ending" }
+        ]
+      },
+      "scenes": [
+        {
+          "code": "ch1_intro",
+          "type": "choice",
+          "video": "v_intro",
+          "on_enter": { "flags": { "game_started": true } },
+          "choices": [
+            {
+              "label": "Bước vào Moonlit Bar",
+              "next": "ch1_bar",
+              "hotspot": { "x": 0.474, "y": 0.331, "w": 0.179, "h": 0.489, "style": "door" }
+            }
+          ]
+        },
+        {
+          "code": "ch1_bar",
+          "type": "choice",
+          "video": "v_bar",
+          "choices": [
+            {
+              "label": "Ngồi xuống quầy bar",
+              "effects": { "affinity": { "hana": 5 } },
+              "next": "ch1_counter"
+            },
+            {
+              "label": "Chú ý đến cô gái ở góc quầy",
+              "effects": { "affinity": { "hana": 10 }, "flags": { "noticed_her": true } },
+              "next": "ch1_quiet"
+            }
+          ]
+        },
+        {
+          "code": "ch1_counter",
+          "type": "linear",
+          "video": "v_counter",
+          "next": "ch1_name",
+          "on_enter": { "affinity": { "hana": 5 } }
+        },
+        {
+          "code": "ch1_quiet",
+          "type": "linear",
+          "video": "v_quiet",
+          "next": "ch1_name",
+          "on_enter": { "affinity": { "hana": 8 } }
+        },
+        {
+          "code": "ch1_name",
+          "type": "choice",
+          "video": "v_name",
+          "choices": [
+            {
+              "label": "Xin phép hỏi tên em",
+              "effects": { "affinity": { "hana": 10 } },
+              "next": "ch1_number",
+              "timer_ms": 10000
+            },
+            {
+              "label": "Chỉ mỉm cười làm quen",
+              "effects": { "affinity": { "hana": 5 } },
+              "next": "ch1_number",
+              "timer_ms": 10000
+            },
+            {
+              "label": "Ngập ngừng, không nói gì...",
+              "next": "ch1_number",
+              "timer_ms": 10000,
+              "default": true
+            }
+          ]
+        },
+        {
+          "code": "ch1_number",
+          "type": "linear",
+          "video": "v_number",
+          "next": "ch1_ending",
+          "checkpoint": true
+        },
+        {
+          "code": "ch1_ending",
+          "type": "ending",
+          "video": "v_smile"
+        }
+      ]
+    },
+    {
+      "idx": 2,
+      "title": "Chapter 2 — The Confession",
+      "is_free": false,
+      "price_cents": 299,
+      "sku": "fh_demo_ch2",
+      "entry": "ch2_morning",
+      "poster": "/media/thumb_ch2.jpg",
+      "videos": [
+        { "code": "v_morning", "idx": 0, "title": "Buổi sáng sau đêm dài", "media": "v_morning" },
+        { "code": "v_confess_choice", "idx": 1, "title": "Khoảnh khắc tỏ tình", "media": "v_confess_choice" },
+        { "code": "v_malsook_route", "idx": 2, "title": "Nhánh Mal-sook", "media": "v_malsook_route" },
+        { "code": "v_minjung_route", "idx": 3, "title": "Nhánh Min-jung", "media": "v_minjung_route" },
+        { "code": "v_normal_route", "idx": 4, "title": "Giữ im lặng", "media": "v_normal_route" },
+        { "code": "v_busted", "idx": 5, "title": "Bị bắt quả tang", "media": "v_busted" },
+        { "code": "v_end_malsook", "idx": 6, "title": "Kết: Mãi bên Mal-sook", "media": "v_end_malsook" },
+        { "code": "v_end_minjung", "idx": 7, "title": "Kết: Ánh đèn sân khấu", "media": "v_end_minjung" },
+        { "code": "v_end_normal", "idx": 8, "title": "Kết: Một mái nhà", "media": "v_end_normal" },
+        { "code": "v_end_bad", "idx": 9, "title": "Kết: Bị bắt quả tang", "media": "v_end_bad" }
+      ],
+      "map": {
+        "width": 1520,
+        "height": 1060,
+        "nodes": [
+          { "id": "start", "kind": "start", "x": 35, "y": 455, "w": 150, "h": 150 },
+          { "id": "morning", "kind": "video", "title": "Buổi sáng sau đêm dài", "x": 210, "y": 463, "w": 240, "h": 135 , "scene": "ch2_morning" },
+          { "id": "confess", "kind": "video", "title": "Khoảnh khắc tỏ tình", "x": 540, "y": 463, "w": 240, "h": 135 , "scene": "ch2_confess_choice" },
+          { "id": "malsook_route", "kind": "video", "title": "Nhánh Mal-sook", "x": 890, "y": 63, "w": 240, "h": 135 , "scene": "ch2_malsook_route" },
+          { "id": "minjung_route", "kind": "video", "title": "Nhánh Min-jung", "x": 890, "y": 333, "w": 240, "h": 135 , "scene": "ch2_minjung_route" },
+          { "id": "busted", "kind": "video", "title": "Bị bắt quả tang", "x": 890, "y": 603, "w": 240, "h": 135 , "scene": "ch2_busted" },
+          { "id": "normal_route", "kind": "video", "title": "Giữ im lặng", "x": 890, "y": 863, "w": 240, "h": 135 , "scene": "ch2_normal_route" },
+          { "id": "end_malsook", "kind": "finish", "x": 1285, "y": 55, "w": 150, "h": 150 , "scene": "end_malsook_good" },
+          { "id": "end_minjung", "kind": "finish", "x": 1285, "y": 325, "w": 150, "h": 150 , "scene": "end_minjung_good" },
+          { "id": "end_bad", "kind": "finish", "x": 1285, "y": 595, "w": 150, "h": 150 , "scene": "end_bad" },
+          { "id": "end_normal", "kind": "finish", "x": 1285, "y": 855, "w": 150, "h": 150 , "scene": "end_normal" }
+        ],
+        "edges": [
+          { "from": "start", "to": "morning" },
+          { "from": "morning", "to": "confess" },
+          { "from": "confess", "to": "malsook_route", "label": "Tỏ tình Mal-sook", "cond": "malsook>=20" },
+          { "from": "confess", "to": "minjung_route", "label": "Tỏ tình Min-jung", "cond": "minjung>=20" },
+          { "from": "confess", "to": "busted", "label": "Bắt cá hai tay", "cond": "cả hai>=10" },
+          { "from": "confess", "to": "normal_route", "label": "Giữ im lặng" },
+          { "from": "malsook_route", "to": "end_malsook" },
+          { "from": "minjung_route", "to": "end_minjung" },
+          { "from": "busted", "to": "end_bad" },
+          { "from": "normal_route", "to": "end_normal" }
+        ]
+      },
+      "scenes": [
+        {
+          "code": "ch2_morning",
+          "type": "linear",
+          "video": "v_morning",
+          "next": "ch2_confess_choice",
+          "checkpoint": true
+        },
+        {
+          "code": "ch2_confess_choice",
+          "type": "choice",
+          "video": "v_confess_choice",
+          "choices": [
+            {
+              "label": "Tỏ tình với Mal-sook",
+              "condition": { "affinity": { "malsook": { ">=": 20 } } },
+              "effects": { "flags": { "confessed_malsook": true } },
+              "next": "ch2_malsook_route"
+            },
+            {
+              "label": "Tỏ tình với Min-jung",
+              "condition": { "affinity": { "minjung": { ">=": 20 } } },
+              "effects": { "flags": { "confessed_minjung": true } },
+              "next": "ch2_minjung_route"
+            },
+            {
+              "label": "Bắt cá hai tay...",
+              "condition": {
+                "affinity": { "malsook": { ">=": 10 }, "minjung": { ">=": 10 } }
+              },
+              "next": "ch2_busted"
+            },
+            {
+              "label": "Giữ im lặng",
+              "next": "ch2_normal_route"
+            }
+          ]
+        },
+        {
+          "code": "ch2_malsook_route",
+          "type": "linear",
+          "video": "v_malsook_route",
+          "next": "end_malsook_good",
+          "on_enter": { "affinity": { "malsook": 10 } }
+        },
+        {
+          "code": "ch2_minjung_route",
+          "type": "linear",
+          "video": "v_minjung_route",
+          "next": "end_minjung_good",
+          "on_enter": { "affinity": { "minjung": 10 } }
+        },
+        {
+          "code": "ch2_normal_route",
+          "type": "linear",
+          "video": "v_normal_route",
+          "next": "end_normal"
+        },
+        {
+          "code": "ch2_busted",
+          "type": "linear",
+          "video": "v_busted",
+          "next": "end_bad",
+          "on_enter": { "set_affinity": { "malsook": 0, "minjung": 0 } }
+        },
+        { "code": "end_malsook_good", "type": "ending", "video": "v_end_malsook" },
+        { "code": "end_minjung_good", "type": "ending", "video": "v_end_minjung" },
+        { "code": "end_normal", "type": "ending", "video": "v_end_normal" },
+        { "code": "end_bad", "type": "ending", "video": "v_end_bad" }
+      ]
+    },
+    {
+      "idx": 3,
+      "title": "Chapter 3 — The Untold Secret",
+      "is_free": false,
+      "price_cents": 299,
+      "sku": "fh_demo_ch3",
+      "entry": "ch3_intro",
+      "poster": "/media/thumb_ch3.jpg",
+      "videos": [
+        { "code": "v_ch3_intro", "idx": 0, "title": "Bí mật chưa kể", "media": "v_ch3_intro", "poster": "/media/thumb_ch3.jpg" },
+        { "code": "v_ch3_end", "idx": 1, "title": "Kết chương 3", "media": "v_ch3_end", "poster": "/media/thumb_ch3.jpg" }
+      ],
+      "map": {
+        "width": 1000,
+        "height": 400,
+        "nodes": [
+          { "id": "start", "kind": "start", "x": 40, "y": 130, "w": 140, "h": 140 },
+          { "id": "intro", "kind": "video", "title": "Bí mật chưa kể", "x": 250, "y": 133, "w": 240, "h": 135 , "scene": "ch3_intro" },
+          { "id": "ending", "kind": "finish", "x": 560, "y": 130, "w": 140, "h": 140 }
+        ],
+        "edges": [
+          { "from": "start", "to": "intro" },
+          { "from": "intro", "to": "ending" }
+        ]
+      },
+      "scenes": [
+        {
+          "code": "ch3_intro",
+          "type": "linear",
+          "video": "v_ch3_intro",
+          "next": "ch3_ending",
+          "checkpoint": true
+        },
+        { "code": "ch3_ending", "type": "ending", "video": "v_ch3_end" }
+      ]
+    },
+    {
+      "idx": 4,
+      "title": "Chapter 4 — A Fateful Crossroads",
+      "is_free": false,
+      "price_cents": 299,
+      "sku": "fh_demo_ch4",
+      "entry": "ch4_intro",
+      "poster": "/media/thumb_ch4.jpg",
+      "videos": [
+        { "code": "v_ch4_intro", "idx": 0, "title": "Ngã rẽ định mệnh", "media": "v_ch4_intro", "poster": "/media/thumb_ch4.jpg" },
+        { "code": "v_ch4_end", "idx": 1, "title": "Kết chương 4", "media": "v_ch4_end", "poster": "/media/thumb_ch4.jpg" }
+      ],
+      "map": {
+        "width": 1000,
+        "height": 400,
+        "nodes": [
+          { "id": "start", "kind": "start", "x": 40, "y": 130, "w": 140, "h": 140 },
+          { "id": "intro", "kind": "video", "title": "Ngã rẽ định mệnh", "x": 250, "y": 133, "w": 240, "h": 135 , "scene": "ch4_intro" },
+          { "id": "ending", "kind": "finish", "x": 560, "y": 130, "w": 140, "h": 140 }
+        ],
+        "edges": [
+          { "from": "start", "to": "intro" },
+          { "from": "intro", "to": "ending" }
+        ]
+      },
+      "scenes": [
+        {
+          "code": "ch4_intro",
+          "type": "linear",
+          "video": "v_ch4_intro",
+          "next": "ch4_ending",
+          "checkpoint": true
+        },
+        { "code": "ch4_ending", "type": "ending", "video": "v_ch4_end" }
+      ]
+    }
+  ],
+  "endings": [
+    { "scene": "ch1_ending", "code": "hana_good", "title": "Đừng vội về nhà", "rank": "good" },
+    { "scene": "end_malsook_good", "code": "malsook_good", "title": "Mãi bên Mal-sook", "rank": "good" },
+    { "scene": "end_minjung_good", "code": "minjung_good", "title": "Ánh đèn sân khấu và em", "rank": "good" },
+    { "scene": "end_normal", "code": "normal", "title": "Một mái nhà, năm người bạn", "rank": "normal" },
+    { "scene": "end_bad", "code": "bad_busted", "title": "Bị bắt quả tang", "rank": "bad" },
+    { "scene": "ch3_ending", "code": "ch3_end", "title": "Kết chương 3", "rank": "normal" },
+    { "scene": "ch4_ending", "code": "ch4_end", "title": "Kết chương 4", "rank": "normal" }
+  ],
+  "gallery": [
+    { "title": "Khoảnh khắc ở quầy bar", "media": "v_counter", "unlock_scene": "ch1_counter" },
+    { "title": "Ánh mắt bên khung cửa", "media": "v_quiet", "unlock_scene": "ch1_quiet" },
+    { "title": "Nụ cười của Hana", "media": "v_smile", "unlock_scene": "ch1_ending" },
+    { "title": "CG: Nụ cười Mal-sook", "media": "cg_malsook", "unlock_scene": "end_malsook_good" },
+    { "title": "CG: Min-jung sau cánh gà", "media": "cg_minjung", "unlock_scene": "end_minjung_good", "is_bonus": true }
+  ]
+}

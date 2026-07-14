@@ -1,0 +1,8 @@
+# deps & build
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Crowdin export intermediate files (processed → public/locales/)
+crowdin-imports/*
+!crowdin-imports/.gitkeep

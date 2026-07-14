@@ -1,0 +1,28 @@
+# FMV dating-sim — deploy 2 service: api (Go Director) + web (nginx serve frontend + proxy).
+# Chạy:  cp .env.example .env  → sửa secret → docker compose up -d --build
+services:
+  api:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      DB_PATH: /data/game.db
+      MEDIA_DIR: /app/media
+      ADDR: ":8080"
+      # BẮT BUỘC set trong .env (prod) — thiếu là compose báo lỗi ngay:
+      ADMIN_TOKEN: ${ADMIN_TOKEN:?set ADMIN_TOKEN trong .env}
+      MEDIA_SIGNING_SECRET: ${MEDIA_SIGNING_SECRET:?set MEDIA_SIGNING_SECRET trong .env}
+    volumes:
+      - db_data:/data          # SQLite bền qua restart/redeploy
+    expose:
+      - "8080"                 # chỉ nội bộ, không mở ra ngoài
+
+  web:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "80:80"                # đổi thành "8080:80" nếu 80 đã bận
+
+volumes:
+  db_data:

@@ -1,0 +1,7 @@
+# Không đưa DB runtime + file tạm vào build context (seed sẽ tạo mới trong container)
+data/
+*.db
+*.db-shm
+*.db-wal
+Dockerfile
+.dockerignore
