@@ -40,7 +40,7 @@ function NotifToast({ item, onDismiss }) {
         display: 'flex',
         alignItems: 'center',
         gap: 1.5,
-        width: 'min(320px, 80vw)',
+        width: 'min(320px, 80cqw)',
         bgcolor: 'rgba(26, 22, 34, 0.94)',
         border: '1px solid #3a3148',
         borderLeft: '3px solid',

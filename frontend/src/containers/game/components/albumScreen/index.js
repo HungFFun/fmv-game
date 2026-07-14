@@ -21,9 +21,9 @@ const CH = '/chapter'; // tái dùng back.svg + lock-heart.png
 
 const STAGE_SX = {
   position: 'relative',
-  width: 'min(100vw, calc(100vh * 16 / 9))',
+  width: 'min(100cqw, calc(100cqh * 16 / 9))',
   aspectRatio: '16 / 9',
-  maxHeight: '100vh',
+  maxHeight: '100cqh',
   overflow: 'hidden',
   containerType: 'size',
   background: `url('${A}/bg.png') center / cover no-repeat`,

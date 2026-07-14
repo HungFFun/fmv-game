@@ -2,7 +2,10 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <title>Năm Trái Tim Dưới Một Mái Nhà — Demo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,6 +13,36 @@
       href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
       rel="stylesheet"
     />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
+        overscroll-behavior: none;
+      }
+      /* #root là container-query context để stage (16:9) scale theo khung — kể cả khi xoay */
+      #root {
+        position: fixed;
+        inset: 0;
+        container-type: size;
+      }
+      /* Mobile cầm DỌC → xoay nội dung sang NGANG để lấp đầy màn hình.
+         Dùng CSS transform nên chạy mọi trình duyệt (kể cả iOS Safari không khoá được orientation). */
+      @media (orientation: portrait) and (pointer: coarse) {
+        #root {
+          inset: auto;
+          top: 50%;
+          left: 50%;
+          width: 100vh;
+          height: 100vw;
+          transform: translate(-50%, -50%) rotate(90deg);
+          transform-origin: center center;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

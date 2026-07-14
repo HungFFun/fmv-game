@@ -59,21 +59,21 @@ docker compose up -d --build      # DB giữ nguyên (volume db_data)
 ```
 
 ## 8. Gắn domain + HTTPS (Caddy — tự động)
-Compose đã có sẵn service `caddy` (cổng 80/443) tự xin & gia hạn cert Let's Encrypt.
+Compose đã có service `caddy` (80/443) tự xin & gia hạn cert Let's Encrypt.
+Domain **`game.fmv.com`** đã hardcode trong [Caddyfile](Caddyfile) (đổi domain thì sửa file này).
 
-1. **Trỏ DNS**: tại nơi quản lý domain, thêm **A record** cho domain (hoặc subdomain)
-   trỏ về IP server. Cloudflare thì tạm để **DNS only** (tắt proxy cam) khi xin cert.
-2. **Khai báo domain** trong `.env`:
+1. **Trỏ DNS**: thêm **A record** `game.fmv.com` → IP server `45.77.251.153`.
+   Cloudflare thì tạm để **DNS only** (tắt proxy cam) khi xin cert. Kiểm tra:
    ```bash
-   echo "DOMAIN=game.tenban.com" >> .env   # thay bằng domain thật
+   dig +short game.fmv.com     # phải ra 45.77.251.153
    ```
-3. **Mở cổng 443** + chạy lại:
+2. **Mở cổng 443** + chạy:
    ```bash
    ufw allow 443/tcp
-   docker compose up -d
-   docker compose logs -f caddy   # thấy "certificate obtained successfully"
+   docker compose up -d --build
+   docker compose logs -f caddy   # chờ "certificate obtained successfully"
    ```
-4. Truy cập `https://game.tenban.com` (Caddy tự chuyển http→https).
+3. Truy cập `https://game.fmv.com` (Caddy tự chuyển http→https).
 
 > Cert lưu trong volume `caddy_data` — đừng `down -v` kẻo phải xin lại (dễ dính rate-limit
 > Let's Encrypt). Chỉ dùng IP không domain? Bỏ service `caddy`, thêm `ports: ["80:80"]` vào `web`.

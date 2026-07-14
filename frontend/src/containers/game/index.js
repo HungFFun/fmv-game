@@ -23,7 +23,7 @@ import { SaveLoadMenu, StoreScreen } from './components/panels';
 // Banner "demo không hỗ trợ" — Figma node 191:1689: dải gradient ngang (xanh→hồng→xanh,
 // mờ dần 2 mép), chữ trắng căn giữa. Kích thước bám bề rộng stage 16:9 (dùng vw/vh vì banner
 // nằm NGOÀI container stage nên không dùng được cqw).
-const STAGE_W = 'min(100vw, calc(100vh * 16 / 9))';
+const STAGE_W = 'min(100cqw, calc(100cqh * 16 / 9))';
 const TOAST_SX = {
   position: 'absolute',
   top: '50%',

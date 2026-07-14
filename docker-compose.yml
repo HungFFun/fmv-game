@@ -31,8 +31,6 @@ services:
     restart: unless-stopped
     depends_on:
       - web
-    environment:
-      DOMAIN: ${DOMAIN:?set DOMAIN trong .env, vd game.tenban.com}
     ports:
       - "80:80"
       - "443:443"

@@ -283,7 +283,7 @@ function Modal({ title, children, onClose }) {
             gap: 1.5,
             display: 'flex',
             flexDirection: 'column',
-            maxHeight: '80vh',
+            maxHeight: '80cqh',
           },
         },
       }}
