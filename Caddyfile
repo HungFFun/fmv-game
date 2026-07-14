@@ -1,5 +1,7 @@
-# Caddy TLS edge: tự xin/gia hạn Let's Encrypt cho domain, proxy toàn bộ vào nginx `web`.
-game.fmv.com {
+# Caddy TLS edge: tự xin/gia hạn Let's Encrypt, proxy toàn bộ vào nginx `web`.
+# Domain FREE dùng nip.io (tự phân giải <ip>.nip.io → IP đó, không cần đăng ký).
+# Đổi sang domain thật: thay dòng dưới bằng tên domain của bạn.
+45.77.251.153.nip.io {
 	encode gzip
 	reverse_proxy web:80
 }
