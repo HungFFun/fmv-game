@@ -1,7 +1,7 @@
 # Caddy TLS edge: tự xin/gia hạn Let's Encrypt, proxy toàn bộ vào nginx `web`.
-# Domain FREE qua DuckDNS (fmv-game.duckdns.org → 45.77.251.153).
-# Đổi domain: thay dòng dưới bằng tên mới rồi restart caddy.
-fmv-game.duckdns.org {
+# Dùng nip.io (DNS ổn định cho Let's Encrypt) — <ip>.nip.io tự phân giải về IP.
+# DuckDNS hay bị SERVFAIL/timeout khi LE tra CAA nên không dùng.
+45.77.251.153.nip.io {
 	encode gzip
 	reverse_proxy web:80
 }
