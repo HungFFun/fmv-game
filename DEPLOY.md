@@ -58,15 +58,25 @@ git pull
 docker compose up -d --build      # DB giữ nguyên (volume db_data)
 ```
 
-## 8. (Tùy chọn) HTTPS bằng domain
-Cách nhanh nhất: đặt Caddy làm reverse proxy trước `web`, hoặc dùng certbot + nginx.
-Ví dụ Caddy 1 dòng (thay `web` mapping cổng 80 → 8081 trong compose trước):
-```bash
-# docker-compose: đổi web ports thành "8081:80"
-docker run -d --name caddy --restart unless-stopped --network host \
-  -v caddy_data:/data caddy caddy reverse-proxy \
-  --from yourdomain.com --to :8081
-```
+## 8. Gắn domain + HTTPS (Caddy — tự động)
+Compose đã có sẵn service `caddy` (cổng 80/443) tự xin & gia hạn cert Let's Encrypt.
+
+1. **Trỏ DNS**: tại nơi quản lý domain, thêm **A record** cho domain (hoặc subdomain)
+   trỏ về IP server. Cloudflare thì tạm để **DNS only** (tắt proxy cam) khi xin cert.
+2. **Khai báo domain** trong `.env`:
+   ```bash
+   echo "DOMAIN=game.tenban.com" >> .env   # thay bằng domain thật
+   ```
+3. **Mở cổng 443** + chạy lại:
+   ```bash
+   ufw allow 443/tcp
+   docker compose up -d
+   docker compose logs -f caddy   # thấy "certificate obtained successfully"
+   ```
+4. Truy cập `https://game.tenban.com` (Caddy tự chuyển http→https).
+
+> Cert lưu trong volume `caddy_data` — đừng `down -v` kẻo phải xin lại (dễ dính rate-limit
+> Let's Encrypt). Chỉ dùng IP không domain? Bỏ service `caddy`, thêm `ports: ["80:80"]` vào `web`.
 
 ## Lệnh vận hành hay dùng
 ```bash

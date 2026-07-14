@@ -1,5 +1,8 @@
-# FMV dating-sim — deploy 2 service: api (Go Director) + web (nginx serve frontend + proxy).
-# Chạy:  cp .env.example .env  → sửa secret → docker compose up -d --build
+# FMV dating-sim — deploy: api (Go Director) + web (nginx static+proxy) + caddy (TLS edge).
+# Chạy:  cp .env.example .env  → điền ADMIN_TOKEN, MEDIA_SIGNING_SECRET, DOMAIN → docker compose up -d --build
+#
+# Caddy đứng ngoài (80/443), tự xin & gia hạn cert Let's Encrypt cho DOMAIN, proxy vào web.
+# Chỉ dùng IP (không domain/HTTPS)? → bỏ service `caddy`, mở `ports: ["80:80"]` ở `web`.
 services:
   api:
     build: ./backend
@@ -8,21 +11,37 @@ services:
       DB_PATH: /data/game.db
       MEDIA_DIR: /app/media
       ADDR: ":8080"
-      # BẮT BUỘC set trong .env (prod) — thiếu là compose báo lỗi ngay:
       ADMIN_TOKEN: ${ADMIN_TOKEN:?set ADMIN_TOKEN trong .env}
       MEDIA_SIGNING_SECRET: ${MEDIA_SIGNING_SECRET:?set MEDIA_SIGNING_SECRET trong .env}
     volumes:
-      - db_data:/data          # SQLite bền qua restart/redeploy
+      - db_data:/data
     expose:
-      - "8080"                 # chỉ nội bộ, không mở ra ngoài
+      - "8080"
 
   web:
     build: ./frontend
     restart: unless-stopped
     depends_on:
       - api
+    expose:
+      - "80"                     # nội bộ — Caddy proxy vào
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - web
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN trong .env, vd game.tenban.com}
     ports:
-      - "80:80"                # đổi thành "8080:80" nếu 80 đã bận
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data         # lưu cert (đừng xoá kẻo xin lại, dễ dính rate-limit)
+      - caddy_config:/config
 
 volumes:
   db_data:
+  caddy_data:
+  caddy_config:

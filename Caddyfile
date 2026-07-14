@@ -1,0 +1,6 @@
+# Caddy TLS edge: tự xin/gia hạn Let's Encrypt cho DOMAIN, proxy toàn bộ vào nginx `web`.
+# DOMAIN lấy từ biến môi trường (đặt trong .env).
+{$DOMAIN} {
+	encode gzip
+	reverse_proxy web:80
+}
